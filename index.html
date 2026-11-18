@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SCHOOL FITNESS | By Maggie Zarate</title>
+  <meta name="description" content="Certificaciones de Pilates, calendario de fechas, galería y formación de movimiento consciente con Maggie Zarate." />
+  
+  <!-- Tipografías de Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Sacramento&display=swap" rel="stylesheet" />
+
+  <!-- Estilos CSS -->
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* Mostrar la descripción de cada curso únicamente al pasar el cursor o enfocar la tarjeta */
+    .course-square-card .course-card-desc {
+      max-height: 0;
+      margin-top: 0;
+      overflow: hidden;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(8px);
+      transition: opacity 0.25s ease, transform 0.25s ease, max-height 0.35s ease,
+                  margin-top 0.25s ease, visibility 0s linear 0.35s;
+    }
+
+    .course-square-card:hover .course-card-desc,
+    .course-square-card:focus-visible .course-card-desc {
+      max-height: 8em;
+      margin-top: 10px;
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      transition-delay: 0s;
+    }
+
+    /* En dispositivos táctiles, mantener visible la descripción */
+    @media (hover: none) {
+      .course-square-card .course-card-desc {
+        max-height: 8em;
+        margin-top: 10px;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+      }
+    }
+  </style>
+  <link rel="icon" type="image/svg+xml" href="images/LOGO.jfif" />
+</head>
+<body>
+  <div class="app-shell">
+
+    <!-- ===================================================================
+         BARRA DE ANUNCIOS SUPERIOR
+         =================================================================== -->
+    <div class="announcement">
+      Inscripciones abiertas
+      <button onclick="goTo('calendar')">
+        Ver próximas fechas
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14" /><path d="m14 7 5 5-5 5" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- ===================================================================
+         ENCABEZADO / NAVEGACIÓN PRINCIPAL (8 PESTAÑAS)
+         =================================================================== -->
+    <header class="site-header">
+      <button class="logo header-logo-btn" onclick="goTo('home')" aria-label="Inicio de School Fitness">
+        <img src="images/SCHOOLPNG.png" alt="School Fitness by Maggie Zarate" class="header-logo-img" />
+      </button>
+
+      <nav id="main-nav">
+        <button data-page="home" class="active" onclick="goTo('home')">Inicio</button>
+        <button data-page="courses" onclick="goTo('courses')">Certificaciones</button>
+        <button data-page="calendar" onclick="goTo('calendar')">Calendario</button>
+        <div class="nav-dropdown" id="nav-comunidad">
+          <button type="button" class="nav-dropdown-trigger" aria-expanded="false" aria-haspopup="true" onclick="toggleNavDropdown(this)">
+            Comunidad
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="nav-dropdown-menu">
+            <button data-page="gallery" onclick="goTo('gallery')">Galería</button>
+            <button data-page="testimonials" onclick="goTo('testimonials')">Testimonios</button>
+          </div>
+        </div>
+        <button data-page="about" onclick="goTo('about')">Nuestra historia</button>
+        <button data-page="contact" onclick="goTo('contact')">Contacto</button>
+      </nav>
+
+      <div class="header-right-actions">
+        <button class="btn-header-cta" onclick="document.getElementById('courses-hub').scrollIntoView({behavior: 'smooth'})">
+          INSCRIBIRME
+        </button>
+        <button class="cart-button" onclick="openCart()" aria-label="Abrir carrito de compras">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 8h12l-1 12H7L6 8Z" />
+            <path d="M9 9V6a3 3 0 0 1 6 0v3" />
+          </svg>
+          <span>Carrito</span>
+          <b id="cart-count-badge" style="display: none;">0</b>
+        </button>
+        <button class="menu-toggle" id="menu-toggle-btn" onclick="toggleMobileMenu()" aria-label="Abrir o cerrar navegación" aria-expanded="false" aria-controls="main-nav">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ===================================================================
+         VISTA 1: INICIO (HOME)
+         =================================================================== -->
+        <!-- ===================================================================
+         VISTA 1: PÁGINA PRINCIPAL UNIFICADA (HOME)
+         =================================================================== -->
+    <section id="page-home" class="page-view active page">
+
+      <!-- HERO FULL-BLEED (ESTILO OME MOTION) -->
+      <section class="hero">
+        <div class="hero-bg-media">
+          <img src="images/FOTO3.JPG" alt="Comunidad de Pilates y Movimiento Consciente" />
+        </div>
+        <div class="hero-scrim"></div>
+
+        <div class="hero-content-wrap">
+          <div class="hero-eyebrow">
+            <span class="dot"></span>
+            BIENVENIDA A SCHOOL FITNESS
+          </div>
+          <h1 class="hero-title-main">
+            <strong>school</strong><em>fitness</em>
+          </h1>
+          <p class="hero-subtitle-line">
+            Movimiento consciente, Pilates y Barre. Formación profesional con aval oficial SEP-CONOCER.
+          </p>
+          <div class="hero-ctas-row">
+            <button class="ome-btn-primary" onclick="goTo('courses')">
+              VER CERTIFICACIONES
+            </button>
+            <button class="ome-btn-ghost" onclick="goTo('calendar')">
+              PRÓXIMAS FECHAS
+            </button>
+          </div>
+        </div>
+
+        <!-- ONDA ORGÁNICA SVG HERO HACIA THIS IS US (BLANCO) -->
+        <div class="hero-bottom-wave" aria-hidden="true">
+          <svg viewBox="0 0 1440 96" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,32 C280,78 480,92 720,54 C960,16 1180,68 1440,38 L1440,96 L0,96 Z" fill="#ffffff"></path>
+          </svg>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           SECCIÓN: THIS IS US / SOMOS SCHOOL FITNESS (ESTILO OME MOTION)
+           =================================================================== -->
+      <section id="brand-essence" class="ome-about-section" aria-labelledby="ome-about-title">
+        <!-- Ambient Blur Blobs -->
+        <div class="ome-ambient-blob blob-left" aria-hidden="true"></div>
+        <div class="ome-ambient-blob blob-right" aria-hidden="true"></div>
+
+        <div class="ome-about-container">
+          <!-- Paleta de 5 Puntos estilo Ome Motion -->
+          <div class="swatch-dots-strip" aria-hidden="true">
+            <span class="swatch-dot" style="background: #263D50;" title="Azul Marino"></span>
+            <span class="swatch-dot" style="background: #A88A73;" title="Café Avellana"></span>
+            <span class="swatch-dot" style="background: #F7F3EE; border: 1px solid #A88A73;" title="Beige Arena"></span>
+            <span class="swatch-dot" style="background: #6B7C93;" title="Azul Grisáceo"></span>
+            <span class="swatch-dot" style="background: #594337;" title="Café Chocolate"></span>
+          </div>
+
+          <!-- Encabezado Script "this is us" -->
+          <div class="ome-about-header">
+            <p class="ome-about-lead">
+              Academia y comunidad de certificación en Pilates y movimiento consciente. Formación con rigor anatómico, práctica guiada y respeto por tu propio ritmo.
+            </p>
+          </div>
+
+          <!-- Cuadrícula 2 Columnas: Tarjetas a la izquierda + Collage a la derecha -->
+          <div class="ome-about-grid">
+            <!-- Columna Izquierda: 3 Tarjetas de Valor -->
+            <div class="ome-about-cards">
+              <!-- Tarjeta 01 -->
+              <article class="ome-value-card">
+                <div class="ome-card-meta">
+                  <span class="ome-card-index">0 1</span>
+                  <div class="ome-card-badge" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                    </svg>
+                  </div>
+                </div>
+                <h3 class="ome-card-title">A tu propio ritmo</h3>
+                <p class="ome-card-desc">
+                  Progresiones seguras de bajo y alto impacto, diseñadas tanto para principiantes como para instructoras en activo.
+                </p>
+              </article>
+
+              <!-- Tarjeta 02 -->
+              <article class="ome-value-card">
+                <div class="ome-card-meta">
+                  <span class="ome-card-index">0 2</span>
+                  <div class="ome-card-badge" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                      <circle cx="9" cy="7" r="4"/>
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                    </svg>
+                  </div>
+                </div>
+                <h3 class="ome-card-title">Grupos reducidos</h3>
+                <p class="ome-card-desc">
+                  Tu coach te conoce por tu nombre. Cupos limitados por sede para garantizar acompañamiento cercano y corrección en tiempo real.
+                </p>
+              </article>
+
+              <!-- Tarjeta 03 -->
+              <article class="ome-value-card">
+                <div class="ome-card-meta">
+                  <span class="ome-card-index">0 3</span>
+                  <div class="ome-card-badge" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                  </div>
+                </div>
+                <h3 class="ome-card-title">Cuerpo integral & aval</h3>
+                <p class="ome-card-desc">
+                  Biomecánica, alineación postural y certificación oficial con validez curricular ante la red SEP-CONOCER.
+                </p>
+              </article>
+            </div>
+
+            <!-- Columna Derecha: Collage Asimétrico de 3 Fotos de Comunidad -->
+            <div class="ome-about-collage" aria-label="Comunidad de coaches y alumnas en cursos presenciales">
+              <div class="collage-main-wrap">
+                <img src="images/FOTO3.JPG" alt="Comunidad de alumnas y coaches en formación intensiva" class="collage-img collage-squircle" loading="lazy" />
+              </div>
+              <div class="collage-circle-top-wrap">
+                <img src="images/FOTO10.JPG" alt="Clase grupal de barre y técnica corporal" class="collage-img collage-circle-top" loading="lazy" />
+              </div>
+              <div class="collage-circle-bottom-wrap">
+                <img src="images/FOTO1.JPG" alt="Generación de coaches certificadas School Fitness" class="collage-img collage-circle-bottom" loading="lazy" />
+              </div>
+            </div>
+          </div>
+
+          <!-- TICKER MARQUEE REDONDEADO Y COHESIVO -->
+          <div class="marquee-pill-wrap">
+            <div class="marquee" aria-label="Beneficios de los cursos">
+              <span>✦ Aval Oficial SEP · CONOCER</span>
+              <i>✦</i>
+              <span>N1 & N2 Reformer</span>
+              <i>✦</i>
+              <span>Pilates SMT & Mat</span>
+              <i>✦</i>
+              <span>Barre School·Fitness</span>
+              <i>✦</i>
+              <span>Adultos Mayores</span>
+              <i>✦</i>
+              <span>Cadillac & Tower</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           SECCIÓN: NUESTROS CURSOS Y CERTIFICACIONES (ESTILO OME MOTION)
+           =================================================================== -->
+      <section id="courses-hub" class="courses-hub-section" aria-labelledby="courses-hub-title">
+        <!-- Onda Orgánica Superior Blanca entrando al fondo malva -->
+        <div class="courses-top-wave" aria-hidden="true">
+          <svg viewBox="0 0 1440 70" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,0 L1440,0 L1440,16 C1160,54 940,12 720,38 C480,64 260,18 0,36 Z" fill="#ffffff"></path>
+          </svg>
+        </div>
+
+        <div class="courses-hub-container">
+          <div class="courses-hub-header">
+            <span class="courses-hub-eyebrow">Nuestros</span>
+            <h2 id="courses-hub-title">Cursos y certificaciones.</h2>
+            <p class="courses-hub-desc">Haz clic en cualquier curso para consultar sedes, fechas, temario y costo de inscripción.</p>
+          </div>
+
+          <div class="squares-hub-grid">
+            <!-- Cuadro 1: N1 Reformer -->
+            <article class="course-square-card" onclick="openCourseSyllabus(1)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCourseSyllabus(1);}" data-category="reformer" tabindex="0" role="button" aria-label="Abrir detalles de Certificación Reformer Nivel 1">
+              <img src="images/CURSO2.JPG" alt="Certificación Pilates Reformer Nivel 1" class="course-card-bg" loading="lazy" />
+              <div class="course-card-overlay"></div>
+              <div class="course-card-content">
+                <span class="course-card-cat">Reformer · Fundamentos</span>
+                <h3 class="course-card-title">N1 Reformer</h3>
+                <p class="course-card-desc">Bases biomecánicas, transiciones seguras, alineación postural y repertorio clásico y contemporáneo.</p>
+              </div>
+            </article>
+
+            <!-- Cuadro 2: N2 Reformer -->
+            <article class="course-square-card" onclick="openCourseSyllabus(2)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCourseSyllabus(2);}" data-category="reformer" tabindex="0" role="button" aria-label="Abrir detalles de Certificación Reformer Nivel 2">
+              <img src="images/CURSO3.JPG" alt="Certificación Pilates Reformer Nivel 2" class="course-card-bg" loading="lazy" />
+              <div class="course-card-overlay"></div>
+              <div class="course-card-content">
+                <span class="course-card-cat">Reformer · Avanzado</span>
+                <h3 class="course-card-title">N2 Reformer</h3>
+                <p class="course-card-desc">Transiciones atléticas, suspensiones, resortes avanzados y adaptaciones de alta demanda.</p>
+              </div>
+            </article>
+
+            <!-- Cuadro 3: Pilates SMT -->
+            <article class="course-square-card" onclick="openCourseSyllabus(3)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCourseSyllabus(3);}" data-category="mat" tabindex="0" role="button" aria-label="Abrir detalles de Certificación Pilates SMT">
+              <img src="images/CURSO1.JPG" alt="Certificación Pilates SMT Matwork y Accesorios" class="course-card-bg" loading="lazy" />
+              <div class="course-card-overlay"></div>
+              <div class="course-card-content">
+                <span class="course-card-cat">Mat & Biomecánica</span>
+                <h3 class="course-card-title">Pilates SMT</h3>
+                <p class="course-card-desc">La raíz del método en piso: anatomía funcional, pedagogía y dominio de accesorios.</p>
+              </div>
+            </article>
+
+            <!-- Cuadro 4: Barre School·Fitness -->
+            <article class="course-square-card" onclick="openCourseSyllabus(4)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCourseSyllabus(4);}" data-category="barre" tabindex="0" role="button" aria-label="Abrir detalles de Certificación Barre School">
+              <img src="images/CURSO3.JPG" alt="Certificación en Barre School·Fitness" class="course-card-bg" loading="lazy" />
+              <div class="course-card-overlay"></div>
+              <div class="course-card-content">
+                <span class="course-card-cat">Barre Intensivo</span>
+                <h3 class="course-card-title">Barre School</h3>
+                <p class="course-card-desc">Fusión de danza y fitness: musicalidad en 8 tiempos, trabajo isométrico y diseño de secuencias.</p>
+              </div>
+            </article>
+
+            <!-- Cuadro 5: Adultos Mayores -->
+            <article class="course-square-card" onclick="openCourseSyllabus(5)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCourseSyllabus(5);}" data-category="especialidad" tabindex="0" role="button" aria-label="Abrir detalles de Adultos Mayores y Poblaciones Especiales">
+              <img src="images/CURSO2.JPG" alt="Acondicionamiento para Adultos Mayores" class="course-card-bg" loading="lazy" />
+              <div class="course-card-overlay"></div>
+              <div class="course-card-content">
+                <span class="course-card-cat">Especialización Funcional</span>
+                <h3 class="course-card-title">Adultos Mayores</h3>
+                <p class="course-card-desc">Protocolos seguros para movilidad articular, equilibrio, prevención de caídas y adaptaciones.</p>
+              </div>
+            </article>
+
+            <!-- Cuadro 6: Cadillac & Tower -->
+            <article class="course-square-card" onclick="openCourseSyllabus(6)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openCourseSyllabus(6);}" data-category="aparatos" tabindex="0" role="button" aria-label="Abrir detalles de Certificación Cadillac y Tower">
+              <img src="images/CURSO1.JPG" alt="Certificación en Cadillac y Torre" class="course-card-bg" loading="lazy" />
+              <div class="course-card-overlay"></div>
+              <div class="course-card-content">
+                <span class="course-card-cat">Aparatos de Estudio</span>
+                <h3 class="course-card-title">Cadillac & Tower</h3>
+                <p class="course-card-desc">Barras push-through, trapecio, resortes superiores y cadenas cinéticas para fuerza profunda.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Onda Orgánica Inferior saliendo del fondo malva hacia el Calendario (Crema #faf8f5) -->
+        <div class="courses-bottom-wave" aria-hidden="true">
+          <svg viewBox="0 0 1440 70" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,32 C260,62 480,18 720,44 C940,68 1160,26 1440,48 L1440,70 L0,70 Z" fill="#F7F3EE"></path>
+          </svg>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           SECCIÓN: CALENDARIO DE PRÓXIMOS EVENTOS Y FECHAS
+           =================================================================== -->
+      <section id="calendar-section" class="section calendar-hub-section" aria-labelledby="calendar-title">
+        <div class="calendar-header-block">
+          <span class="eyebrow">Agenda y Convocatorias</span>
+          <h2 id="calendar-title">Próximas sedes <em>y fechas.</em></h2>
+          <p class="calendar-header-desc">Convocatorias presenciales e híbridas con cupos reducidos para garantizar mentoría individualizada.</p>
+        </div>
+
+        <div class="calendar-section">
+          <!-- Filtros rápidos de calendario -->
+          <div class="calendar-filters">
+            <button class="active" onclick="filterCalendar('all', this)">Todos los eventos</button>
+            <button onclick="filterCalendar('cert', this)">Certificaciones</button>
+            <button onclick="filterCalendar('workshop', this)">Workshops</button>
+            <button onclick="filterCalendar('masterclass', this)">Masterclasses</button>
+          </div>
+
+          <div class="calendar-list">
+            <!-- Evento 1 -->
+            <article class="calendar-card" data-category="cert">
+              <div class="calendar-date-badge">
+                <span class="day">15</span>
+                <span class="month">Mayo</span>
+                <span class="year">2025</span>
+              </div>
+              <div class="calendar-info">
+                <div class="calendar-tags">
+                  <span class="calendar-tag highlight">⚡ Convocatoria principal</span>
+                  <span class="calendar-tag">Híbrido · 16 semanas</span>
+                </div>
+                <h3>Formación de Instructor Reformer</h3>
+                <p>Repertorio completo de Reformer con práctica presencial supervisada, biomecánica y mentorías semanales.</p>
+                <div class="calendar-tags">
+                  <span>📍 Estudio Central + Aula Virtual</span>
+                  <span>⏱ Jueves 18:00 hrs y Sábados 10:00 hrs</span>
+                </div>
+              </div>
+              <div class="calendar-action">
+                <span class="spots">¡Últimos 3 cupos!</span>
+                <button class="btn btn-dark" onclick="addToCart(2)">
+                  Inscribirme
+                </button>
+              </div>
+            </article>
+
+            <!-- Evento 2 -->
+            <article class="calendar-card" data-category="cert">
+              <div class="calendar-date-badge">
+                <span class="day">01</span>
+                <span class="month">Junio</span>
+                <span class="year">2025</span>
+              </div>
+              <div class="calendar-info">
+                <div class="calendar-tags">
+                  <span class="calendar-tag">En Línea · 12 semanas</span>
+                  <span class="calendar-tag">Grupo Verano</span>
+                </div>
+                <h3>Certificación en Pilates Mat Clásico</h3>
+                <p>La base fundamental de todo instructor: anatomía funcional, progresiones y comandos verbales precisos.</p>
+                <div class="calendar-tags">
+                  <span>📍 100% Online con sesiones en vivo</span>
+                  <span>⏱ Clases grabadas + tutoría en directo</span>
+                </div>
+              </div>
+              <div class="calendar-action">
+                <span class="spots" style="color: #6B7C93;">Inscripciones abiertas</span>
+                <button class="btn btn-dark" onclick="addToCart(1)">
+                  Inscribirme
+                </button>
+              </div>
+            </article>
+
+            <!-- Evento 3 -->
+            <article class="calendar-card" data-category="workshop">
+              <div class="calendar-date-badge">
+                <span class="day">21</span>
+                <span class="month">Junio</span>
+                <span class="year">2025</span>
+              </div>
+              <div class="calendar-info">
+                <div class="calendar-tags">
+                  <span class="calendar-tag">Workshop Intensivo</span>
+                  <span class="calendar-tag">Online en vivo</span>
+                </div>
+                <h3>Biomecánica aplicada al Pilates Pre y Postnatal</h3>
+                <p>Taller especializado: evaluación de diástasis de rectos, adaptaciones por trimestre y suelo pélvico.</p>
+                <div class="calendar-tags">
+                  <span>📍 Vía Zoom con grabación permanente</span>
+                  <span>⏱ 10:00 a 14:00 hrs</span>
+                </div>
+              </div>
+              <div class="calendar-action">
+                <span class="spots">Cupo limitado (15 personas)</span>
+                <button class="btn btn-dark" onclick="addToCart(3)">
+                  Reservar plaza
+                </button>
+              </div>
+            </article>
+
+            <!-- Evento 4 -->
+            <article class="calendar-card" data-category="masterclass">
+              <div class="calendar-date-badge">
+                <span class="day">12</span>
+                <span class="month">Julio</span>
+                <span class="year">2025</span>
+              </div>
+              <div class="calendar-info">
+                <div class="calendar-tags">
+                  <span class="calendar-tag">Masterclass Especial</span>
+                  <span class="calendar-tag">Híbrido</span>
+                </div>
+                <h3>Fluidez y Transiciones Avanzadas en Reformer</h3>
+                <p>Diseño de secuencias coreográficas dinámicas para desafiar coordinación y control sin pausas bruscas.</p>
+                <div class="calendar-tags">
+                  <span>📍 Estudio Central & Streaming</span>
+                  <span>⏱ 11:00 a 13:30 hrs</span>
+                </div>
+              </div>
+              <div class="calendar-action">
+                <span class="spots" style="color: #6B7C93;">Abierto a graduadas</span>
+                <button class="btn btn-light" onclick="goTo('contact')">
+                  Solicitar invitación
+                </button>
+              </div>
+            </article>
+
+            <!-- Evento 5 -->
+            <article class="calendar-card" data-category="cert">
+              <div class="calendar-date-badge">
+                <span class="day">01</span>
+                <span class="month">Agosto</span>
+                <span class="year">2025</span>
+              </div>
+              <div class="calendar-info">
+                <div class="calendar-tags">
+                  <span class="calendar-tag">Segunda Convocatoria</span>
+                  <span class="calendar-tag">Híbrido · 16 semanas</span>
+                </div>
+                <h3>Formación de Instructor Reformer (Grupo Otoño)</h3>
+                <p>Segunda convocatoria del año para certificación profesional de reformer con validez curricular.</p>
+                <div class="calendar-tags">
+                  <span>📍 Modalidad Híbrida</span>
+                  <span>⏱ Preventa disponible hasta el 15 de julio</span>
+                </div>
+              </div>
+              <div class="calendar-action">
+                <span class="spots" style="color: #594337;">Preventa abierta</span>
+                <button class="btn btn-dark" onclick="addToCart(2)">
+                  Asegurar plaza
+                </button>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- ONDA ORGÁNICA DE CALENDARIO HACIA BARRE (BLANCO) -->
+        <div class="section-wave wave-bottom" aria-hidden="true">
+          <svg viewBox="0 0 1440 70" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,28 C340,65 580,10 880,48 C1140,80 1320,20 1440,40 L1440,70 L0,70 Z" fill="#ffffff"></path>
+          </svg>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           SECCIÓN: BARRE INTRO METHOD
+           =================================================================== -->
+      <section class="section barre-intro-section" aria-labelledby="barre-intro-title">
+        <div class="barre-intro-grid">
+          <div class="barre-intro-copy">
+            <span class="eyebrow">Método School·Fitness</span>
+            <h2 id="barre-intro-title">
+              Aprende a dirigir clases <em>seguras y dinámicas.</em>
+            </h2>
+            <p class="barre-lead">
+              Formación intensiva teórico-práctica para dominar musicalidad, entrenamiento funcional y pedagogía de clase.
+            </p>
+            <p>
+              Abierto a apasionadas que inician desde cero e instructoras que buscan enriquecer su repertorio y técnica.
+            </p>
+            <div class="barre-intro-actions">
+              <button class="btn btn-dark" onclick="openCourseSyllabus(4)">
+                Ver temario de Barre
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14" /><path d="m14 7 5 5-5 5" /></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="barre-pillars-card">
+            <div class="barre-pillar-item">
+              <span class="barre-pillar-num">01</span>
+              <div>
+                <h3>Todo nivel de experiencia</h3>
+                <p>Progresiones adaptables desde iniciación hasta nivel avanzado de entrenamiento.</p>
+              </div>
+            </div>
+            <div class="barre-pillar-item">
+              <span class="barre-pillar-num">02</span>
+              <div>
+                <h3>Secuencias creativas &amp; ritmo</h3>
+                <p>Musicalidad en 8 tiempos, transiciones fluidas e intensidad constante y motivante.</p>
+              </div>
+            </div>
+            <div class="barre-pillar-item">
+              <span class="barre-pillar-num">03</span>
+              <div>
+                <h3>Bases anatómicas y seguridad</h3>
+                <p>Alineación biomecánica clara y adaptaciones seguras para diferentes cuerpos.</p>
+              </div>
+            </div>
+            <div class="barre-cta-banner">
+              <span>✦ Aval oficial SEP · CONOCER ✦</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ONDA ORGÁNICA DE BARRE HACIA HISTORIA (CREMA #faf8f5) -->
+        <div class="section-wave wave-bottom" aria-hidden="true">
+          <svg viewBox="0 0 1440 70" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,32 C260,65 520,12 800,45 C1060,74 1260,18 1440,36 L1440,70 L0,70 Z" fill="#F7F3EE"></path>
+          </svg>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           SECCIÓN: NUESTRA HISTORIA & FUNDADORA MAGGIE ZARATE
+           =================================================================== -->
+      <section id="about-section" class="section about-unified-section" aria-labelledby="about-title">
+
+        <div class="founder-story section" id="founder-story-card">
+          <!-- Columna Izquierda: Información de la Fundadora y Acreditaciones -->
+          <div class="founder-info-col">
+            <span class="script">Conoce a la fundadora</span>
+            <h3 class="founder-title">Maggie Zarate</h3>
+            <p class="founder-role">Fundadora · Educadora principal</p>
+            <div class="founder-credentials-badges">
+              <span class="badge-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Lic. Acondicionamiento Físico (SEP)
+              </span>
+              <span class="badge-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Docente IBERO Puebla
+              </span>
+              <span class="badge-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Certificada SEP-CONOCER
+              </span>
+            </div>
+          </div>
+
+          <!-- Columna Central: Retrato Centrado con Marco Editorial -->
+          <div class="founder-image-col">
+            <div class="founder-image-frame">
+              <img src="images/MAGGIEBN.JPG" alt="Maggie Zarate - Fundadora y educadora de School Fitness" loading="lazy" />
+            </div>
+          </div>
+
+          <!-- Columna Derecha: Cita y Filosofía Alineada Orgánicamente -->
+          <div class="founder-narrative-col">
+            <blockquote class="founder-quote">
+              “Las mejores instructoras no actúan frente a ti. Crean las condiciones para que descubras todo lo que tu cuerpo puede hacer.”
+            </blockquote>
+            <p class="founder-bio">
+              Tras más de una década formando profesionales del movimiento consciente, Maggie fundó <strong>School Fitness</strong> para unir precisión anatómica, biomecánica funcional y práctica real en cada certificación.
+            </p>
+            <div class="founder-signature-wrap">
+              <span class="signature-name">Maggie Zárate</span>
+              <span class="signature-sub">Formación &amp; Pedagogía</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TRAYECTORIA Y CURRÍCULUM ACADÉMICO (CV) -->
+        <div class="founder-cv-section section">
+          <div class="section-title centered">
+            <span class="eyebrow">Trayectoria &amp; Currículum</span>
+            <h3>Formación académica <em>y experiencia.</em></h3>
+          </div>
+
+          <div class="cv-grid">
+            <!-- Bloque 1: Formación Académica & Docencia -->
+            <article class="cv-card">
+              <div class="cv-card-head">
+                <span class="cv-number">01</span>
+                <h4>Formación Académica y Docencia</h4>
+              </div>
+              <ul class="cv-list">
+                <li>
+                  <strong>Lic. en Acondicionamiento Físico y Creación</strong>
+                  <span>Título y cédula profesional federal ante la SEP.</span>
+                </li>
+                <li>
+                  <strong>Diplomados en Pedagogía y Psicología Deportiva</strong>
+                  <span>Universidad IBERO Puebla.</span>
+                </li>
+                <li>
+                  <strong>Docente Universitaria y Formador Fitness</strong>
+                  <span>IBERO Puebla y programas de extensión.</span>
+                </li>
+                <li>
+                  <strong>Estándar de Competencia SEP-CONOCER</strong>
+                  <span>Acreditación oficial para impartición de cursos.</span>
+                </li>
+              </ul>
+            </article>
+
+            <!-- Bloque 2: Certificaciones Internacionales y Modalidades -->
+            <article class="cv-card">
+              <div class="cv-card-head">
+                <span class="cv-number">02</span>
+                <h4>Certificaciones Internacionales</h4>
+              </div>
+              <ul class="cv-list">
+                <li>
+                  <strong>Certificación Internacional Integral en Pilates</strong>
+                  <span>Mat, Reformer, Cadillac, Chair, Barrel y Corrector Espinal.</span>
+                </li>
+                <li>
+                  <strong>Certificación en Barre</strong>
+                  <span>Formación en 3 escuelas contemporáneas.</span>
+                </li>
+                <li>
+                  <strong>Certificación en Hatha Yoga</strong>
+                  <span>Respiración consciente y alineación postural.</span>
+                </li>
+                <li>
+                  <strong>Más de 10 modalidades fitness</strong>
+                  <span>Trayectoria integral y multidisciplinaria.</span>
+                </li>
+              </ul>
+            </article>
+
+            <!-- Bloque 3: Especialización y Actualización Continua -->
+            <article class="cv-card">
+              <div class="cv-card-head">
+                <span class="cv-number">03</span>
+                <h4>Actualización y Especializaciones</h4>
+              </div>
+              <ul class="cv-list">
+                <li>
+                  <strong>Máster en Readaptación de Lesiones</strong>
+                  <span>En curso · Granada, España.</span>
+                </li>
+                <li>
+                  <strong>Workshops Internacionales de Pilates</strong>
+                  <span>España, Brasil, Portugal, EE. UU. y México.</span>
+                </li>
+                <li>
+                  <strong>Acondicionamiento para Adultos Mayores</strong>
+                  <span>Movilidad segura y adaptaciones funcionales.</span>
+                </li>
+                <li>
+                  <strong>Primeros Auxilios Fitness</strong>
+                  <span>Protocolos de seguridad en estudio.</span>
+                </li>
+              </ul>
+            </article>
+          </div>
+        </div>
+
+        <!-- FAQ (PREGUNTAS FRECUENTES) -->
+        <div class="values-section">
+          <div class="faq-container">
+            <div class="section-title centered">
+              <span class="eyebrow">Dudas habituales</span>
+              <h3>Preguntas frecuentes</h3>
+              <br>
+            </div>
+
+            <div class="faq-list">
+              <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+                  <span>¿Necesito experiencia previa para tomar la certificación?</span>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <p>No para nuestras formaciones de nivel inicial (Pilates Mat y Reformer Nivel 1). Iniciamos desde las bases biomecánicas y anatómicas.</p>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+                  <span>¿Las certificaciones tienen validez oficial?</span>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <p>Sí, cuentan con respaldo oficial ante la Red SEP-CONOCER, garantizando valor curricular y reconocimiento a nivel nacional.</p>
+                </div>
+              </div>
+
+              <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)" aria-expanded="false">
+                  <span>¿Puedo apartar mi lugar en preventa?</span>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <p>Sí, puedes congelar tu precio preferencial con un anticipo de $1,500 MXN y cubrir el restante antes del inicio del curso.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ONDA ORGÁNICA DE HISTORIA A PREVIEW COMUNIDAD (BLANCO) -->
+        <div class="section-wave wave-bottom" aria-hidden="true">
+          <svg viewBox="0 0 1440 70" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,32 C300,10 560,62 840,28 C1100,5 1300,50 1440,26 L1440,75 L0,75 Z" fill="#ffffff"></path>
+          </svg>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           SECCIÓN: PREVIEW COMUNIDAD & TESTIMONIOS (INVITACIONES A PÁGINAS)
+           =================================================================== -->
+      <div class="community-preview-wrapper">
+
+        <!-- TESTIMONIO DESTACADO -->
+        <section class="section testimonial-feature">
+          <div class="quote-mark">“</div>
+          <blockquote>
+            School Fitness no solo me enseñó Pilates: me dio la seguridad para transformar mi pasión en mi profesión.
+          </blockquote>
+          <div class="stars">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+          </div>
+          <p>Amelia R. · Graduada Reformer &amp; Mat</p>
+          <button class="btn btn-dark" onclick="goTo('testimonials')">
+            Leer testimonios completos
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14" /><path d="m14 7 5 5-5 5" /></svg>
+          </button>
+        </section>
+
+        <!-- ONDA ORGÁNICA DE PREVIEW A CONTACTO (CREMA #faf8f5) -->
+        <div class="section-wave wave-bottom" aria-hidden="true">
+          <svg viewBox="0 0 1440 70" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,24 C280,62 540,14 800,46 C1060,74 1280,18 1440,32 L1440,75 L0,75 Z" fill="#F7F3EE"></path>
+          </svg>
+        </div>
+      </div>
+
+      <!-- ===================================================================
+           SECCIÓN: CONTACTO DIRECTO, FORMULARIO, MÉTODOS DE PAGO Y FAQ
+           =================================================================== -->
+      <section id="contact-section" class="section contact-unified-section" aria-labelledby="contact-title">
+        <div class="contact-header-block">
+          <span class="eyebrow">Estamos para ayudarte</span>
+          <h2 id="contact-title">Conversemos sobre tu <em>próxima meta.</em></h2>
+          <p class="contact-header-desc">¿Dudas sobre requisitos, sedes o planes de pago? Escríbenos y te responderemos personalmente.</p>
+        </div>
+
+        <div class="contact-section">
+          <div class="contact-grid">
+            <!-- Información directa -->
+            <div class="contact-info">
+              <span class="eyebrow" style="color: var(--peach);">Contacto directo</span>
+              <h3>Hablemos de tu formación</h3>
+              <p>Nos encanta conocer a futuras instructoras. Escríbenos con tus preguntas o agenda una llamada informativa sin compromiso.</p>
+
+              <div class="contact-detail-list">
+                <div class="contact-detail-item">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  <div>
+                    <h5>Correo electrónico</h5>
+                    <a href="mailto:hola@schoolfitness.com">hola@schoolfitness.com</a>
+                  </div>
+                </div>
+
+                <div class="contact-detail-item">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                  <div>
+                    <h5>WhatsApp Oficial</h5>
+                    <a href="https://wa.me/525540306124" target="_blank" rel="noreferrer">+52 (55) 4030-6124</a>
+                  </div>
+                </div>
+
+                <div class="contact-detail-item">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  <div>
+                    <h5>Horario de atención</h5>
+                    <p>Lunes a Viernes: 9:00 a 18:00 hrs (GMT-6)</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Redes sociales oficiales 
+              <div class="contact-socials-block">
+                <h5>Síguenos en redes</h5>
+                <div>
+                  <a href="https://www.instagram.com/school_fitness_bmz" target="_blank" rel="noopener noreferrer" class="contact-social-card" aria-label="Abrir Instagram de School Fitness">
+                    <div class="social-icon-box">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+                        <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="social-network">Instagram</span>
+                      <strong class="social-handle">@school_fitness_bmz</strong>
+                    </div>
+                  </a>
+
+                  <a href="https://www.facebook.com/schoolfitnessbmz" target="_blank" rel="noopener noreferrer" class="contact-social-card" aria-label="Abrir Facebook de School Fitness">
+                    <div class="social-icon-box">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <span class="social-network">Facebook</span>
+                      <strong class="social-handle">School Fitness By Maggie Zarate</strong>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>-->
+
+            <!-- Formulario editable -->
+           
+          </div>
+
+          <!-- MÉTODOS DE PAGO DISPONIBLES -->
+          <div class="payment-methods-strip" aria-label="Métodos de pago aceptados">
+             <div class="contact-form-card">
+              <h3>Envíanos un mensaje</h3>
+              <p>Completa el formulario y te responderemos a la brevedad con la información de tu interés.</p>
+
+              <div id="contact-success-alert" class="contact-success-alert"></div>
+
+              <form id="contact-form" onsubmit="handleContactSubmit(event)">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="contact-name">Tu nombre completo *</label>
+                    <input type="text" id="contact-name" placeholder="Ej. Mariana González" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="contact-email">Correo electrónico *</label>
+                    <input type="email" id="contact-email" placeholder="mariana@ejemplo.com" required />
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="contact-phone">WhatsApp / Teléfono</label>
+                    <input type="tel" id="contact-phone" placeholder="+52 55..." />
+                  </div>
+                  <div class="form-group">
+                    <label for="contact-interest">Certificación de interés</label>
+                    <select id="contact-interest">
+                      <option value="Instructor Reformer">Certificación Pilates Reformer N1</option>
+                      <option value="Reformer N2">Certificación Reformer Nivel 2</option>
+                      <option value="Pilates SMT">Certificación Pilates SMT (Matwork)</option>
+                      <option value="Barre School">Certificación Barre School·Fitness</option>
+                      <option value="Adultos Mayores">Adultos Mayores &amp; Poblaciones</option>
+                      <option value="Cadillac y Torre">Certificación Cadillac &amp; Tower</option>
+                      <option value="Consulta General">Consulta general / Planes de pago</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="contact-message">Tu mensaje o consulta *</label>
+                  <textarea id="contact-message" placeholder="Cuéntanos sobre tu ciudad y cualquier duda que tengas..." required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-dark" style="width: 100%; justify-content: center;">
+                  Enviar mensaje por correo
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                </button>
+              </form>
+            </div>
+            
+          </div>
+
+ 
+        </div>
+
+        <!-- ===================================================================
+             SECCIÓN: MÉTODOS DE PAGO
+             =================================================================== -->
+        <div class="payment-methods-section" style="max-width: 900px; margin: 60px auto 0;">
+          <div class="payment-methods-header">
+            <h4>Métodos de pago</h4>
+            <p>Opciones de pago en moneda nacional con transferencias SPEI y tarjetas participantes.</p>
+          </div>
+          
+          <div class="payment-badges-grid">
+            <div class="payment-badge-card">
+              <div class="badge-icon-box">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+              </div>
+              <div class="badge-content">
+                <span class="badge-title">Tarjetas de Débito y Crédito</span>
+                <span class="badge-sub">Visa, Mastercard y American Express</span>
+              </div>
+            </div>
+
+            <div class="payment-badge-card">
+              <div class="badge-icon-box">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
+              </div>
+              <div class="badge-content">
+                <span class="badge-title">Transferencia Bancaria (SPEI)</span>
+                <span class="badge-sub">Confirmación inmediata sin comisiones</span>
+              </div>
+            </div>
+
+            <div class="payment-badge-card">
+              <div class="badge-icon-box">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div class="badge-content">
+                <span class="badge-title">Apartado de Lugar</span>
+                <span class="badge-sub">Congela tu tarifa de preventa desde $1,500 MXN</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- DATOS BANCARIOS OFICIALES EN CAJA DESTACADA -->
+          <div class="bank-transfer-details">
+            <div class="bank-badge-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>
+              <span>Cuenta Oficial para Transferencias en México (SPEI)</span>
+            </div>
+            <div class="bank-info-columns">
+              <div class="bank-col">
+                <span class="col-lbl">Banco</span>
+                <strong class="col-val">BBVA México</strong>
+              </div>
+              <div class="bank-col">
+                <span class="col-lbl">Beneficiario</span>
+                <strong class="col-val">Margarita Zárate Mendoza</strong>
+              </div>
+              <div class="bank-col clabe-col">
+                <span class="col-lbl">CLABE Interbancaria (18 dígitos)</span>
+                <div class="clabe-copy-group">
+                  <code id="official-clabe-code" class="col-val clabe-code">012 650 015389476219</code>
+                  <button type="button" class="btn-copy-clabe" onclick="copyClabeToClipboard('012650015389476219', this)" aria-label="Copiar CLABE interbancaria">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                    <span>Copiar</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <p class="bank-note">Al realizar tu transferencia, por favor envía tu comprobante vía WhatsApp para confirmar tu inscripción.</p>
+          </div>
+        </div>
+      </section>
+    </section>
+
+<section id="page-gallery" class="page-view page inner-page">
+      <div class="page-intro">
+        <span class="eyebrow">La vida en movimiento</span>
+        <h1>Momentos y vida <em>en el estudio.</em></h1>
+        <p>Una mirada cercana a nuestras sesiones de práctica, formación de instructoras y el espacio cálido donde crecemos juntas.</p>
+      </div>
+
+      <!-- ONDA ORGÁNICA DE INTRO A GRILLA DE FOTOS -->
+      <div class="section-wave wave-bottom" aria-hidden="true">
+        <svg viewBox="0 0 1440 55" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0,20 C320,48 620,10 920,40 C1180,64 1340,18 1440,28 L1440,55 L0,55 Z" fill="#ffffff"></path>
+        </svg>
+      </div>
+
+      <div class="gallery-section">
+        <!-- Filtros de Galería -->
+        <div class="gallery-filters">
+          <button class="active" onclick="filterGallery('all', this)">Todas las fotos</button>
+          <button onclick="filterGallery('studio', this)">Estudios & Comunidad</button>
+        </div>
+
+        <!-- Barra informativa y controles de navegación directa -->
+        <div class="gallery-toolbar">
+          <span id="gallery-counter-tag" class="gallery-counter-tag">Mostrando 9 fotografías</span>
+          <!-- <div class="gallery-quick-nav">
+            <button class="gallery-nav-arrow-btn" onclick="openGalleryPhoto(0)" title="Abrir visor interactivo con flechas">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+            </button>
+            <button class="btn btn-light" style="padding: 7px 16px; font-size: 10px;" onclick="openGalleryPhoto(0)">
+              Abrir visor con flechas
+            </button>
+          </div>-->
+        </div>
+
+        <!-- Grid uniforme: Todas las imágenes del mismo tamaño -->
+        <div class="gallery-grid">
+          <!-- Item 1 -->
+          <div class="gallery-item" data-category="studio" onclick="openGalleryPhoto(0)">
+            <img src="images/IMG1.jpg" alt="Alineación y fluidez en el carro" loading="lazy" />
+            <div class="gallery-overlay">
+              <span class="cat">Reformer</span>
+              <h4>Alineación y fluidez en el carro</h4>
+              <span class="click-hint">Ampliar foto ↗</span>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="gallery-item" data-category="mat" onclick="openGalleryPhoto(1)">
+            <img src="images/FOTO16.JPG" alt="Aprender en tribu y crecer juntas" loading="lazy" />
+            <div class="gallery-overlay">
+              <span class="cat">Comunidad</span>
+              <h4>Aprender en tribu y crecer juntas</h4>
+              <span class="click-hint">Ampliar foto ↗</span>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="gallery-item" data-category="studio" onclick="openGalleryPhoto(2)">
+            <img src="images/FOTO11.JPG" alt="Control del centro y respiración" loading="lazy" />
+            <div class="gallery-overlay">
+              <span class="cat">Mat</span>
+              <h4>Control del centro y respiración</h4>
+              <span class="click-hint">Ampliar foto ↗</span>
+            </div>
+          </div>
+
+          <!-- Item 4 -->
+          <div class="gallery-item" data-category="studio" onclick="openGalleryPhoto(3)">
+            <img src="images/FOTO4.JPG" alt="Dominio de la máquina y seguridad" loading="lazy" />
+            <div class="gallery-overlay">
+              <span class="cat">Reformer</span>
+              <h4>Dominio de la máquina y seguridad</h4>
+              <span class="click-hint">Ampliar foto ↗</span>
+            </div>
+          </div>
+
+          <!-- Item 5 -->
+          <div class="gallery-item" data-category="mat" onclick="openGalleryPhoto(4)">
+            <img src="images/FOTO12.JPG" alt="Atención personal para cada instructora" loading="lazy" />
+            <div class="gallery-overlay">
+              <span class="cat">Mentoría</span>
+              <h4>Atención personal para cada instructora</h4>
+              <span class="click-hint">Ampliar foto ↗</span>
+            </div>
+          </div>
+
+          <!-- Item 6 -->
+          <div class="gallery-item" data-category="studio" onclick="openGalleryPhoto(5)">
+            <img src="images/FOTO3.JPG" alt="Espacios pensados para el bienestar" loading="lazy" />
+            <div class="gallery-overlay">
+              <span class="cat">Estudio</span>
+              <h4>Espacios pensados para el bienestar</h4>
+              <span class="click-hint">Ampliar foto ↗</span>
+            </div>
+          </div>
+
+          <!-- Item 7 -->
+          <div class="gallery-item" data-category="studio" onclick="openGalleryPhoto(6)">
+            <img src="images/FOTO6.JPG" alt="Acompañamiento consciente de la maternidad" loading="lazy" />
+            <div class="gallery-overlay">
+              <span class="cat">Pre & Postnatal</span>
+              <h4>Acompañamiento de la maternidad</h4>
+              <span class="click-hint">Ampliar foto ↗</span>
+            </div>
+          </div>
+
+          <!-- Item 8 -->
+          <div class="gallery-item" data-category="mat" onclick="openGalleryPhoto(7)">
+            <img src="images/FOTO14.JPG" alt="Enseñar desde el corazón y con ciencia" loading="lazy" />
+            <div class="gallery-overlay">
+              <span class="cat">Vocación</span>
+              <h4>Enseñar desde el corazón y con ciencia</h4>
+              <span class="click-hint">Ampliar foto ↗</span>
+            </div>
+          </div>
+
+          <!-- Item 9 -->
+          <div class="gallery-item" data-category="studio" onclick="openGalleryPhoto(8)">
+            <img src="images/FOTO10.JPG" alt="Fuerza, equilibrio y extensión" loading="lazy" />
+            <div class="gallery-overlay">
+              <span class="cat">Movimiento</span>
+              <h4>Fuerza, equilibrio y extensión</h4>
+              <span class="click-hint">Ampliar foto ↗</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         VISTA 5: TESTIMONIOS (TESTIMONIALS / RESEÑAS)
+         =================================================================== -->
+    <section id="page-testimonials" class="page-view page inner-page reviews-page">
+      <div class="page-intro">
+        <span class="eyebrow">Historias de alumnas</span>
+        <h1>Instructoras reales. <em>Transformaciones reales.</em></h1>
+        <p>Nuestras graduadas en todo México han transformado su práctica con School Fitness. Estas son algunas de sus historias.</p>
+      </div>
+
+      <!-- RESUMEN DE RATING -->
+      <div class="rating-summary">
+        <div>
+          <strong>4.9</strong>
+          <div>
+            <div class="stars" style="justify-content: flex-start; margin-bottom: 8px;">
+              <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+            </div>
+            <p>Basado en 486 reseñas verificadas</p>
+          </div>
+        </div>
+        <div>
+          <strong>98%</strong>
+          <p>recomendaría School Fitness a una amiga</p>
+        </div>
+        <div>
+          <strong>92%</strong>
+          <p>enseña durante los primeros 6 meses tras graduarse</p>
+        </div>
+      </div>
+
+      <!-- GRID DE TESTIMONIOS -->
+      <div class="reviews-grid section">
+
+        <article class="featured-review">
+          <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/DGb4EoXuRs8/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 0 auto; max-width:540px; min-width:0; padding:0; width:100%;"><div style="padding:16px;"> <a href="https://www.instagram.com/reel/DGb4EoXuRs8/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank"> <div style=" display: flex; flex-direction: row; align-items: center;"> <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div></div></div><div style="padding: 19% 0;"></div> <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div><div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div></div><div style="padding: 12.5% 0;"></div> <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;"><div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div> <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div></div><div style="margin-left: 8px;"> <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div> <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div></div><div style="margin-left: auto;"> <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div> <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div> <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div></div></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/reel/DGb4EoXuRs8/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">A post shared by Maggie Zárate (@school_fitness_bmz)</a></p></div></blockquote>
+          <script async src="//www.instagram.com/embed.js"></script>
+        </article>
+
+        <article class="featured-review">
+          <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/reel/DTiuY_sEkh2/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 0 auto; max-width:540px; min-width:0; padding:0; width:100%;"><div style="padding:16px;"> <a href="https://www.instagram.com/reel/DTiuY_sEkh2/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank"> <div style=" display: flex; flex-direction: row; align-items: center;"> <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div></div></div><div style="padding: 19% 0;"></div> <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div><div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div></div><div style="padding: 12.5% 0;"></div> <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;"><div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div> <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div></div><div style="margin-left: 8px;"> <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div> <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div></div><div style="margin-left: auto;"> <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div> <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div> <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div></div></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/reel/DTiuY_sEkh2/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">A post shared by Luisa (@luisara123)</a></p></div></blockquote>
+          <script async src="//www.instagram.com/embed.js"></script>
+        </article>
+
+        <article class="featured-review">
+          <div class="stars" style="justify-content: flex-start;">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+          </div>
+          <blockquote>“El equilibrio entre ciencia y esencia es incomparable. Me sentí retada, acompañada y realmente lista para enseñar desde la primera semana.”</blockquote>
+          <footer>
+            <strong>Nina L.</strong>
+            <span>Graduada de Reformer · Berlín</span>
+          </footer>
+        </article>
+
+        <article>
+          <div class="stars" style="justify-content: flex-start;">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+          </div>
+          <blockquote>“Completé el curso mientras trabajaba a tiempo completo. El ritmo fue perfecto y mi mentora siempre tuvo tiempo para responder cada una de mis dudas.”</blockquote>
+          <footer>
+            <strong>Sophie M.</strong>
+            <span>Graduada de Mat · Londres</span>
+          </footer>
+        </article>
+      </div>
+
+      <!-- CTA INFERIOR -->
+      <div class="review-cta">
+        <span class="script">Tu historia comienza aquí</span>
+        <h2>¿Lista para dar el primer paso hacia tu vocación?</h2>
+        <button class="btn btn-dark" onclick="goTo('courses')">
+          Explorar certificaciones
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14" /><path d="m14 7 5 5-5 5" /></svg>
+        </button>
+      </div>
+    </section>
+
+    <!-- ===================================================================
+         PIE DE PÁGINA (FOOTER MINIMALISTA CENTRADO)
+         =================================================================== -->
+    <!-- ONDA ORGÁNICA A FOOTER (AZUL MARINO #142036) -->
+    <div class="site-footer-wave" aria-hidden="true">
+      <svg viewBox="0 0 1440 85" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,45 C320,85 580,12 860,50 C1120,85 1320,24 1440,40 L1440,85 L0,85 Z" fill="#263D50"></path>
+      </svg>
+    </div>
+    <footer class="site-footer">
+      <div class="footer-center">
+        <button class="logo header-logo-btn" onclick="goTo('home')" aria-label="Inicio de School Fitness">
+        <img src="images/SCHOOLPNG.png" alt="School Fitness by Maggie Zarate" class="header-logo-img"/>
+      </button>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2025 School Fitness By Maggie Zarate</span>
+        <div class="footer-social-links">
+          <a href="https://www.instagram.com/school_fitness_bmz" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="Instagram de School Fitness" title="Instagram: @school_fitness_bmz">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+              <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+            </svg>
+          </a>
+          <a href="https://www.facebook.com/schoolfitnessbmz" target="_blank" rel="noopener noreferrer" class="footer-social-icon" aria-label="Facebook de School Fitness" title="Facebook: School Fitness By Maggie Zarate">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </a>
+        </div>
+        <span>Creado para moverte con conciencia</span>
+      </div>
+    </footer>
+
+    <!-- ===================================================================
+         VENTANA EMERGENTE (MODAL NO INTRUSIVO DE PRÓXIMO CURSO)
+         =================================================================== -->
+    <div id="promo-modal-backdrop" class="promo-modal-backdrop" onclick="if(event.target===this) closePromoModal()">
+      <div class="promo-modal" role="dialog" aria-modal="true" aria-labelledby="promo-title">
+        <button class="promo-modal-close" onclick="closePromoModal()" aria-label="Cerrar ventana emergente">✕</button>
+        
+        <div class="promo-modal-photo">
+          <img src="images/CURSO2.JPG" alt="Formación de Instructor Reformer" />
+          <span class="promo-badge">⚡ Próximo inicio</span>
+        </div>
+
+        <div class="promo-modal-content">
+          <span class="eyebrow" style="color: var(--sage-deep);">Convocatoria Mayo 2025</span>
+          <h3 id="promo-title">Formación de Instructor Reformer</h3>
+          <div class="promo-date-pill">
+            🗓 Inicio: 15 de Mayo, 2025
+          </div>
+          <p>
+            Próxima apertura con tarifa especial de preventa y acceso al campus virtual incluido.
+          </p>
+          <div class="promo-actions">
+            <button class="btn btn-dark" onclick="acceptPromoModal()">
+              Ver temario y detalles
+            </button>
+            <button class="skip-btn" onclick="closePromoModal()">
+              Ahora no, gracias
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================
+         MODAL LIGHTBOX CON FLECHAS ANTERIOR / SIGUIENTE (RESPONSIVO MÓVIL)
+         =================================================================== -->
+    <div id="lightbox-modal" class="lightbox-modal" onclick="if(event.target===this) closeLightbox()" role="dialog" aria-modal="true" aria-label="Visor interactivo de galería">
+      
+      <!-- Barra superior con contador y botón cerrar -->
+      <div class="lightbox-topbar">
+        <span id="lightbox-counter" class="lightbox-counter">1 / 9</span>
+        <button class="lightbox-close" onclick="closeLightbox()" aria-label="Cerrar visor">✕</button>
+      </div>
+
+      <!-- Flecha Anterior (Izquierda) -->
+      <button class="lightbox-arrow lightbox-arrow-prev" onclick="prevGalleryPhoto(event)" aria-label="Foto anterior" title="Foto anterior (Tecla flecha izquierda)">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <!-- Contenido central del visor -->
+      <div class="lightbox-content">
+        <div class="lightbox-img-wrapper">
+          <img id="lightbox-img" src="" alt="Fotografía de la galería" />
+        </div>
+        <div class="lightbox-details">
+          <span id="lightbox-cat" class="lightbox-cat">Reformer</span>
+          <h4 id="lightbox-title" class="lightbox-title">Título de la fotografía</h4>
+          <p id="lightbox-caption" class="lightbox-caption">Descripción de la fotografía</p>
+        </div>
+
+        <!-- Barra inferior para celulares con botones táctiles -->
+        <div class="lightbox-mobile-controls">
+          <button onclick="prevGalleryPhoto(event)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            Anterior
+          </button>
+          <span id="lightbox-mobile-counter">1 / 9</span>
+          <button onclick="nextGalleryPhoto(event)">
+            Siguiente
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Flecha Siguiente (Derecha) -->
+      <button class="lightbox-arrow lightbox-arrow-next" onclick="nextGalleryPhoto(event)" aria-label="Siguiente foto" title="Siguiente foto (Tecla flecha derecha)">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+
+    </div>
+
+    <!-- ===================================================================
+         MODAL DE TEMARIO Y DETALLES DE CERTIFICACIÓN
+         =================================================================== -->
+    <div id="syllabus-modal" class="article-modal" onclick="if(event.target===this) closeCourseSyllabus()" role="dialog" aria-modal="true" aria-labelledby="syllabus-modal-title">
+      <div class="article-modal-box syllabus-modal-box">
+        <button class="article-modal-close" onclick="closeCourseSyllabus()" aria-label="Cerrar temario">✕</button>
+        <div class="article-modal-header">
+          <span id="syllabus-modal-level" class="cat">Certificación Oficial</span>
+          <h2 id="syllabus-modal-title">Título del curso</h2>
+          <div id="syllabus-modal-meta" class="meta">Formato · Inversión</div>
+        </div>
+        <div class="syllabus-modal-body">
+          <p id="syllabus-modal-summary" class="syllabus-summary"></p>
+          <div id="syllabus-modal-highlights" class="syllabus-highlights"></div>
+
+          <!-- Ficha Técnica (PDF) -->
+          <div id="syllabus-modal-spec" class="syllabus-spec-grid">
+            <div class="spec-card">
+              <span class="spec-label">¿A quién va dirigido?</span>
+              <p id="syllabus-modal-target"></p>
+            </div>
+            <div class="spec-card">
+              <span class="spec-label">Requisitos previos</span>
+              <p id="syllabus-modal-requirements"></p>
+            </div>
+            <div class="spec-card">
+              <span class="spec-label">Carga horaria &amp; Modalidad</span>
+              <p id="syllabus-modal-hours"></p>
+            </div>
+            <div class="spec-card">
+              <span class="spec-label">Apartado de lugar</span>
+              <p id="syllabus-modal-deposit"></p>
+            </div>
+          </div>
+
+          <!-- Próximas Sedes y Fechas (Calendario cronológico) -->
+          <div class="syllabus-schedule-block">
+            <div class="schedule-block-header">
+              <h4 class="syllabus-section-heading">Próximas Sedes y Fechas (Calendario Cronológico)</h4>
+              <span class="schedule-subtitle">Selecciona tu ciudad y aparta tu cupo con precio preferencial</span>
+            </div>
+            <div id="syllabus-modal-schedule" class="syllabus-schedule-list">
+              <!-- Renderizado cronológico vía app.js -->
+            </div>
+          </div>
+
+          <!-- Temario Oficial -->
+          <div class="syllabus-modules-block">
+            <h4 class="syllabus-section-heading">Temario oficial y módulos de formación</h4>
+            <ul id="syllabus-modal-list" class="syllabus-list"></ul>
+          </div>
+
+          <!-- Acciones de Inscripción -->
+          <div class="syllabus-modal-actions">
+            <a id="syllabus-modal-wa-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-wa">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              Apartar lugar vía WhatsApp
+            </a>
+            <button id="syllabus-modal-add-btn" class="btn btn-dark">
+              Inscribir / Agregar al carrito
+            </button>
+            <button type="button" class="btn btn-light" onclick="closeCourseSyllabus()">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================
+         CARRITO DE COMPRAS DESPLEGABLE (DRAWER)
+         =================================================================== -->
+    <div id="cart-overlay" class="cart-overlay" onclick="closeCart()" aria-hidden="true"></div>
+    <aside id="cart-drawer" class="cart-drawer" role="dialog" aria-modal="true" aria-label="Carrito de compras">
+      <header>
+        <div>
+          <span class="eyebrow">Tu selección</span>
+          <h2>Carrito de compras</h2>
+        </div>
+        <button class="icon-button" onclick="closeCart()" aria-label="Cerrar carrito">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="m6 6 12 12" /><path d="m18 6-12 12" />
+          </svg>
+        </button>
+      </header>
+
+      <div id="cart-body" class="cart-body">
+        <!-- Renderizado dinámico vía app.js -->
+      </div>
+
+      <footer id="cart-footer" class="cart-footer" style="display: none;">
+        <!-- Subtotal y botón de checkout vía app.js -->
+      </footer>
+    </aside>
+
+  </div>
+
+  <!-- Script interactivo -->
+  <script src="js/app.js"></script>
+</body>
+</html>
