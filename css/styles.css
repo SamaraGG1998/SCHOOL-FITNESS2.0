@@ -5451,16 +5451,147 @@ textarea:focus-visible {
   border-radius: 14px !important;
 }
 
-/* Subpáginas (Galería y Testimonios) */
+/* Subpáginas (Galería y Testimonios) - Intro centrado verticalmente con wave orgánica */
 .page-intro {
   position: relative !important;
-  padding: 60px 6vw clamp(3.5rem, 5vw, 5rem) !important;
   background: #F7F3EE !important;
+  color: #263D50 !important;
+  padding: calc(68px + clamp(45px, 6vh, 65px)) clamp(20px, 5vw, 40px) clamp(75px, 9vh, 100px) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-align: center !important;
+  min-height: clamp(350px, 44vh, 460px) !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  border-bottom: none !important;
 }
 
-.gallery-card,
-.gallery-card img {
+.page-intro .page-intro-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-intro .eyebrow {
+  color: #A88A73 !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase !important;
+  margin-bottom: 12px !important;
+  display: inline-block !important;
+}
+
+.page-intro h1 {
+  color: #263D50 !important;
+  font-size: clamp(32px, 4.2vw, 50px) !important;
+  font-weight: 600 !important;
+  line-height: 1.18 !important;
+  margin: 0 auto 16px !important;
+  max-width: 840px !important;
+}
+
+.page-intro h1 em {
+  color: #A88A73 !important;
+  font-style: italic !important;
+  font-family: var(--serif, 'Playfair Display', serif) !important;
+}
+
+.page-intro p {
+  color: #6B7C93 !important;
+  font-size: clamp(15px, 1.5vw, 17px) !important;
+  line-height: 1.65 !important;
+  max-width: 620px !important;
+  margin: 0 auto !important;
+}
+
+.page-intro .section-wave.wave-bottom {
+  position: absolute !important;
+  bottom: -2px !important;
+  left: 0 !important;
+  width: 100% !important;
+  line-height: 0 !important;
+  pointer-events: none !important;
+  z-index: 4 !important;
+  height: clamp(2.8rem, 5vw, 4.5rem) !important;
+  transform: translateY(1px) !important;
+}
+
+.page-intro .section-wave.wave-bottom svg {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Galería: Recuadros amigables con esquinas redondeadas y cohesión */
+.gallery-section {
+  background: #ffffff !important;
+  padding: 60px 6vw 120px !important;
+}
+
+.gallery-filters button {
+  border-radius: 999px !important;
+  padding: 10px 24px !important;
+  font-family: 'Outfit', sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  border: 1px solid rgba(168, 138, 115, 0.3) !important;
+  color: #263D50 !important;
+  background: #F7F3EE !important;
+  transition: all 0.25s ease !important;
+}
+
+.gallery-filters button:hover {
+  background: #A88A73 !important;
+  color: #ffffff !important;
+  border-color: #A88A73 !important;
+}
+
+.gallery-filters button.active {
+  background: #263D50 !important;
+  color: #ffffff !important;
+  border-color: #263D50 !important;
+  box-shadow: 0 4px 14px rgba(38, 61, 80, 0.18) !important;
+}
+
+.gallery-counter-tag {
+  color: #6B7C93 !important;
+  font-weight: 600 !important;
+}
+
+.gallery-item {
   border-radius: 22px !important;
+  overflow: hidden !important;
+  box-shadow: 0 8px 24px rgba(38, 61, 80, 0.08) !important;
+  border: 1px solid rgba(168, 138, 115, 0.15) !important;
+  transition: transform 0.35s ease, box-shadow 0.35s ease !important;
+}
+
+.gallery-item:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 16px 36px rgba(38, 61, 80, 0.15) !important;
+}
+
+.gallery-item img {
+  border-radius: 22px !important;
+}
+
+.gallery-overlay {
+  border-radius: 22px !important;
+  background: linear-gradient(to top, rgba(38, 61, 80, 0.92) 0%, rgba(38, 61, 80, 0.25) 60%, transparent 100%) !important;
+}
+
+.gallery-overlay .cat {
+  color: #A88A73 !important;
 }
 
 .reviews-grid article {
